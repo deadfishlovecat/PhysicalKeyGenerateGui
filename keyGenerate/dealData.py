@@ -136,7 +136,17 @@ def codeGen(q_data, delete_index_master, delete_index_slave):
             delete_index.append(i)
     return code_result, delete_index
 
+# 将primary_data中index的元素全部提取出来
+def get_new_rssi(primary_data, index):
+    result = []
+    for i in range(len(index)):
+        result.append(primary_data[index[i]])
+    return result
+
 
 if __name__ == "__main__":
-    data = [13, 11, 10, 14, 11, 12, 16, 17, 19, 15, 18, 17]
-    print(Rank(data, 5))
+    data = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+    data1 = [1,2,3,4]
+    data2 = [2,5,6,7]
+    print(get_new_rssi(data, data1, data2))
+
