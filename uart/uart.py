@@ -43,6 +43,7 @@ class uart_communicate():
         self.receive_data = []
         for i in range(data_len):
             self.receive_data.append(self.ser.read())
+        return self.receive_data
     # 关闭串口
     def close(self):
         self.close()
