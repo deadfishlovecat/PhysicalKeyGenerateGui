@@ -6,6 +6,7 @@ from Uart.get_com import get_com_by_input
 # 串口通信类，实现了三个函数，分别为获取RSSI值、发送一串数据和得到一串数据
 
 class uart_communicate():
+
     def __init__(self, used_port):
         try:
             self.ser = serial.Serial(used_port, 38400)
