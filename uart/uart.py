@@ -11,7 +11,7 @@ class uart_communicate():
             print("The Serial port can't find!")
         else:
             for port in port_list:
-            print(port)
+                print(port)
 
         used_port = input("输入串口号:\n")
         try:

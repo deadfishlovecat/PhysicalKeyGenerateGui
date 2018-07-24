@@ -66,7 +66,8 @@ def deal_data(primary_master_data, primary_slave_data):
 if  __name__ == "__main__":
     port_list = list(serial.tools.list_ports.comports())
     if len(port_list) <= 0:
-        print("The Serial port can't find!")
+        print("The Serial port ca"
+              "n't find!")
     else:
         for port in port_list:
             print(port)
