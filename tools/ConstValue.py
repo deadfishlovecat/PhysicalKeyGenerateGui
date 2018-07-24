@@ -18,4 +18,4 @@ class constValue():
     rank_order = 10
 
     #双门限量化的系数
-    doubleq_Fac = 0.5
+    doubleq_Fac = 0.9

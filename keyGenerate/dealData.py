@@ -136,8 +136,7 @@ def codeGen(q_data, delete_index_master, delete_index_slave):
             delete_index.append(i)
     return code_result, delete_index
 
-def getKey():
-    pass 
+
 if __name__ == "__main__":
     data = [13, 11, 10, 14, 11, 12, 16, 17, 19, 15, 18, 17]
     print(Rank(data, 5))
