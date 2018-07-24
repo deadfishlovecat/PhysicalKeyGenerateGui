@@ -2,11 +2,11 @@ __author__ = 'caocongcong'
 import serial
 import time
 import serial.tools.list_ports
-from tools.changeFile import change_to_list
+from Tools.changeFile import change_to_list
 from keyGenerate.draw import draw_rssi, draw_key
 import keyGenerate.dealData as deal
 from keyGenerate.Error_correction import encode, decode, delete_value
-from tools.ConstValue import constValue
+from Tools.ConstValue import constValue
 
 from keyGenerate.main import get_key_final
 
