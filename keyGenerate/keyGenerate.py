@@ -53,7 +53,6 @@ class generate_key():
             print("剩余数据长度", len(self.rssi_data))
             print("总和长度：", len(self.key) + len(self.rssi_data))
             # 首先进行平滑
-            # 首先进行平滑
             smooth_data = deal.smooth(self.rssi_data, constValue.smooth_order)
 
             # 然后进行rank
