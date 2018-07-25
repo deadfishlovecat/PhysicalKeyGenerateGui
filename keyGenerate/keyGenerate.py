@@ -35,12 +35,13 @@ class generate_key():
                 self.uart_commu.send_data([101])
             else:
                 self.uart_commu.send_data(delete_index)
-
+            print(delete_index)
             delete_index_reve = self.uart_commu.receive()
 
             if len(delete_index_reve) == 1 and delete_index_reve[0] == 101:
                 delete_index_reve = []
-            print("此次接受的删除index长度:", len(delete_index))
+            print("此次接受的删除index长度:", len(delete_index_reve))
+            print(delete_index_reve)
 
             tmp_key, tmp_delete = deal.codeGen(data_doubleq, delete_index, delete_index_reve)
             self.key.extend(tmp_key)
@@ -60,6 +61,8 @@ class generate_key():
 
             # 进行双门限量化
             data_doubleq, delete_index = deal.doubleq(rank_data, constValue.doubleq_Fac)
+            print("此次发送的删除index长度:", len(delete_index))
+            print(delete_index)
             # 先等待接受shuju
             print("准备接受数据")
             delete_index_reve = self.uart_commu.receive()
@@ -73,7 +76,8 @@ class generate_key():
 
             if len(delete_index_reve) == 1 and delete_index_reve[0] == 101:
                 delete_index_reve = []
-
+            print("此次接受的删除index长度:", len(delete_index_reve))
+            print(delete_index_reve)
 
             tmp_key, tmp_delete = deal.codeGen(data_doubleq, delete_index, delete_index_reve)
             self.key.extend(tmp_key)
