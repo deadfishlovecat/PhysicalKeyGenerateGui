@@ -28,14 +28,16 @@ class generate_key():
 
             # 进行双门限量化
             data_doubleq, delete_index = deal.doubleq(rank_data, constValue.doubleq_Fac)
+            print("此次发送的删除index长度:",len(delete_index) )
             print("准备发送数据")
             # 此处考虑如果delete_inde的长度为0
-            if (len(delete_index)):
+            if (len(delete_index) == 0):
                 self.uart_commu.send_data([101])
             else:
                 self.uart_commu.send_data(delete_index)
 
             delete_index_reve = self.uart_commu.receive()
+
             if len(delete_index_reve) == 1 and delete_index_reve[0] == 101:
                 delete_index_reve = []
 
@@ -60,7 +62,7 @@ class generate_key():
             delete_index_reve = self.uart_commu.receive()
             print("准备发送数据")
             # 此处考虑如果delete_inde的长度为0
-            if (len(delete_index)):
+            if (len(delete_index) == 0):
                 self.uart_commu.send_data([101])
             else:
                 self.uart_commu.send_data(delete_index)
