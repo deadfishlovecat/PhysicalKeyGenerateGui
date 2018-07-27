@@ -32,13 +32,14 @@ class generate_key():
             print("准备发送数据")
             # 此处考虑如果delete_inde的长度为0
             if (len(delete_index) == 0):
-                self.uart_commu.send_data([101])
+                self.uart_commu.send_data([255])
             else:
                 self.uart_commu.send_data(delete_index)
-
+            print("发送完数据")
+            print("接受数据")
             delete_index_reve = self.uart_commu.receive()
-
-            if len(delete_index_reve) == 1 and delete_index_reve[0] == 101:
+            print("接受完数据")
+            if len(delete_index_reve) == 1 and delete_index_reve[0] == 255:
                 delete_index_reve = []
             print("此次接受的删除index长度:", len(delete_index))
 
@@ -65,15 +66,16 @@ class generate_key():
             # 先等待接受shuju
             print("准备接受数据")
             delete_index_reve = self.uart_commu.receive()
+            print("接收到数据")
             print("准备发送数据")
             # 此处考虑如果delete_inde的长度为0
             if (len(delete_index) == 0):
-                self.uart_commu.send_data([101])
+                self.uart_commu.send_data([255])
             else:
                 self.uart_commu.send_data(delete_index)
 
 
-            if len(delete_index_reve) == 1 and delete_index_reve[0] == 101:
+            if len(delete_index_reve) == 1 and delete_index_reve[0] == 255:
                 delete_index_reve = []
             print("此次接受的删除index长度:", len(delete_index_reve))
             print(delete_index_reve)
