@@ -8,7 +8,7 @@ from Uart.get_com import get_com_by_input
 class uart_communicate():
     def __init__(self, used_port):
         try:
-            self.ser = serial.Serial(used_port, 38400, timeout=0.5)
+            self.ser = serial.Serial(used_port, 38400, timeout=10)
         except:
             print("开启串口失败")
         else:
@@ -21,12 +21,13 @@ class uart_communicate():
         while len(tmp_rssi_data) < constValue.frame_length * 3:
             self.receive()
             tmp_rssi_data.extend(self.receive_data)
-
+        print(tmp_rssi_data)
+        print(type(tmp_rssi_data[1]))
         for i in range(constValue.frame_length):
             str_data = tmp_rssi_data[(i*3)+2]
-            data = ord(str_data) - ord('0')
+            data = str_data - ord('0')
             str_data = tmp_rssi_data[(i*3)+1]
-            data += (ord(str_data) - ord('0'))*10
+            data += (str_data - ord('0'))*10
             self.rssi_data.append(-data)
 
 
