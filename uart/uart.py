@@ -33,13 +33,14 @@ class uart_communicate():
     # 发送数据
     def send_data(self, data):
         data_len = len(data)
-        self.ser.write(bytes(str(data_len),"ascii"))
+        self.ser.write(bytes(str(data_len)-'0',"ascii"))
         for i in range(data_len):
             self.ser.write(bytes(str(data[i]),"ascii"))
 
     # 接收数据
     def receive(self):
         data_len =  int.from_bytes(self.ser.read(), byteorder='big')
+        print(data_len)
         self.receive_data = []
         for i in range(data_len):
             self.receive_data.append(self.ser.read())
