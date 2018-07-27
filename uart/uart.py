@@ -44,6 +44,7 @@ class uart_communicate():
             if len(rece_data) > 0:
                 self.receive_data = rece_data
                 break
+        return self.receive_data
 
 
     # 关闭串口
