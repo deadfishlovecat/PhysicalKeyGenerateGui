@@ -8,7 +8,7 @@ from Uart.get_com import get_com_by_input
 class uart_communicate():
     def __init__(self, used_port):
         try:
-            self.ser = serial.Serial(used_port, 38400, timeout=0.5)
+            self.ser = serial.Serial(used_port, 38400, timeout=10)
         except:
             print("开启串口失败")
         else:
