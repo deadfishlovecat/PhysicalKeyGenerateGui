@@ -33,7 +33,7 @@ class uart_communicate():
     # 发送数据
     def send_data(self, data):
         for i in range(len(data)):
-            self.ser.write(bytes[data[i]])
+            self.ser.write(bytes([data[i]]))
 
 
     # 接收数据
