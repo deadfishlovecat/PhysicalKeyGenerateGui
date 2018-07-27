@@ -8,7 +8,7 @@ from Uart.get_com import get_com_by_input
 class uart_communicate():
     def __init__(self, used_port):
         try:
-            self.ser = serial.Serial(used_port, 38400)
+            self.ser = serial.Serial(used_port, 38400, timeout=0.5)
         except:
             print("开启串口失败")
         else:
@@ -32,19 +32,20 @@ class uart_communicate():
 
     # 发送数据
     def send_data(self, data):
-        data_len = len(data)
-        self.ser.write(bytes(str(data_len)-'0',"ascii"))
-        for i in range(data_len):
-            self.ser.write(bytes(str(data[i]),"ascii"))
+        for i in range(len(data)):
+            self.ser.write(bytes[data[i]])
+
 
     # 接收数据
     def receive(self):
-        data_len =  int.from_bytes(self.ser.read(), byteorder='big')
-        print(data_len)
         self.receive_data = []
-        for i in range(data_len):
-            self.receive_data.append(self.ser.read())
-        return self.receive_data
+        while True:
+            rece_data = self.ser.read_all()
+            if len(rece_data) > 0:
+                self.receive_data = rece_data
+                break
+
+
     # 关闭串口
     def close(self):
         self.close()
