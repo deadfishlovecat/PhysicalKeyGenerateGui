@@ -1,6 +1,7 @@
 __author__ = 'caocongcong'
 from Uart.get_com import get_com_by_input
-from  Uart.uart import uart_communicate
+#from  Uart.uart import uart_communicate
+from  Uart.uart_new import uart_communicate
 '''
  进行串口测试——配合RX使用
  测试流程-
