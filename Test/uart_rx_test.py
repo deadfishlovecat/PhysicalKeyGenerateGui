@@ -11,8 +11,10 @@ from  Uart.uart import uart_communicate
 if __name__ == "__main__":
     used_com = get_com_by_input()
     uart_test = uart_communicate(used_com)
-    i = 1
-    while i > 0:
+    i = 0
+    while True:
+        print(i)
         data = uart_test.receive()
         print(data)
         uart_test.send_data(data)
+        i += 1
