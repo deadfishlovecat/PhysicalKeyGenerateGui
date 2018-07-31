@@ -1,5 +1,5 @@
 __author__ = 'cao'
-from Uart.uart import uart_communicate
+from Uart.uart_new import uart_communicate
 import keyGenerate.dealData as deal
 from Tools.ConstValue import constValue
 
