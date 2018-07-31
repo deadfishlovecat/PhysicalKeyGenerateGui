@@ -15,13 +15,14 @@ if __name__ == "__main__":
 
     used_com = get_com_by_input()
     uart_test = uart_communicate(used_com)
-    loop = 5
+    loop = 1
     data = []
-    for i in range(6):
+    for i in range(1,160):
         data.append(i)
     while loop > 0:
         print(loop)
         uart_test.send_data(data)
+        print("发送完数据")
         data_rece = uart_test.receive()
         print(data_rece)
         loop -= 1

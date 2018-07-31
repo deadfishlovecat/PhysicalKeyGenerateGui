@@ -17,5 +17,6 @@ if __name__ == "__main__":
         print(i)
         data = uart_test.receive()
         print(data)
+        print(len(data))
         uart_test.send_data(data)
         i += 1
