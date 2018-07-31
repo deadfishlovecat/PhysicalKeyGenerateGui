@@ -16,16 +16,14 @@ class uart_communicate():
 
     ## 获取RSSI数据
     def uart_get_rssi_data(self):
-        tmp_rssi_data = []
+        primary_rssi_data = []
         self.rssi_data = []
-        while len(tmp_rssi_data) < constValue.frame_length * 3:
-            self.receive()
-            tmp_rssi_data.extend(self.receive_data)
+        for i in range(constValue.frame_length*3):
+            primary_rssi_data.append(int.from_bytes(self.ser.read(), byteorder="big"))
         for i in range(constValue.frame_length):
-            data = tmp_rssi_data[(i*3)+2]
-            data += tmp_rssi_data[(i*3)+1]*10
-            self.rssi_data.append(-data)
-
+            data = primary_rssi_data[i*3+2] - ord('0')
+            data += (primary_rssi_data[i*3+1] - ord('0'))*10
+            self.rssi_data.append(data)
 
     # 发送数据
     def send_data(self, data):
@@ -48,7 +46,7 @@ class uart_communicate():
 
     def send_end(self):
         pass
-    
+
     # 关闭串口
     def close(self):
         self.close()

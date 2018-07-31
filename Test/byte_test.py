@@ -6,3 +6,4 @@ if __name__ == "__main__":
     data = 199
     byte_data = bytes([data])
     print(int.from_bytes(byte_data, byteorder="big"))
+    print(199 - ord('0'))
