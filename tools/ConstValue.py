@@ -19,3 +19,6 @@ class constValue():
 
     #双门限量化的系数
     doubleq_Fac = 0.9
+
+    # zigbee一次传输的数据
+    translate_once = 60
