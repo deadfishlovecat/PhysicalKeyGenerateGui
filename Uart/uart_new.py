@@ -37,6 +37,7 @@ class uart_communicate():
             self.ser.write(bytes([data[i]]))
 
 
+
     # 接收数据
     def receive(self):
         self.receive_data = []
@@ -45,6 +46,7 @@ class uart_communicate():
             self.receive_data.append(int.from_bytes(self.ser.read(), byteorder="big"))
 
         return self.receive_data
+
 
     # 关闭串口
     def close(self):
