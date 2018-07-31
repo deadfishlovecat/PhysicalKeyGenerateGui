@@ -17,9 +17,9 @@ class generate_key():
 
     def get_key_slave(self):
         while len(self.rssi_data) > 10:
-            print("当前密钥长度:", len(self.key))
-            print("剩余数据长度", len(self.rssi_data))
-            print("总和长度：", len(self.key ) + len(self.rssi_data))
+            # print("当前密钥长度:", len(self.key))
+            # print("剩余数据长度", len(self.rssi_data))
+            # print("总和长度：", len(self.key ) + len(self.rssi_data))
             # 首先进行平滑
             smooth_data = deal.smooth(self.rssi_data, constValue.smooth_order)
 
@@ -28,32 +28,34 @@ class generate_key():
 
             # 进行双门限量化
             data_doubleq, delete_index = deal.doubleq(rank_data, constValue.doubleq_Fac)
-            print("此次发送的删除index长度:", len(delete_index))
-            print(delete_index)
-            print("准备发送数据")
+            # print("此次发送的删除index长度:", len(delete_index))
+            # print(delete_index)
+            # print("准备发送数据")
             # 此处考虑如果delete_inde的长度为0
             if (len(delete_index) == 0):
                 self.uart_commu.send_data([255])
             else:
                 self.uart_commu.send_data(delete_index)
-            print("发送完数据")
-            print("接受数据")
+            # print("发送完数据")
+            # print("接受数据")
             delete_index_reve = self.uart_commu.receive()
-            print("接受完数据")
+            # print("接受完数据")
             if len(delete_index_reve) == 1 and delete_index_reve[0] == 255:
                 delete_index_reve = []
-            print("此次接受的删除index长度:", len(delete_index))
+            # print("此次接受的删除index长度:", len(delete_index))
 
             tmp_key, tmp_delete = deal.codeGen(data_doubleq, delete_index, delete_index_reve)
             self.key.extend(tmp_key)
 
             self.rssi_data = deal.get_new_rssi(self.rssi_data, tmp_delete)
+        print("密钥长度:", len(self.key))
+        return self.key
 
     def get_key_master(self):
         while len(self.rssi_data) > 10:
-            print("当前密钥长度:", len(self.key))
-            print("剩余数据长度", len(self.rssi_data))
-            print("总和长度：", len(self.key) + len(self.rssi_data))
+            # print("当前密钥长度:", len(self.key))
+            # print("剩余数据长度", len(self.rssi_data))
+            # print("总和长度：", len(self.key) + len(self.rssi_data))
             # 首先进行平滑
             smooth_data = deal.smooth(self.rssi_data, constValue.smooth_order)
 
@@ -62,13 +64,13 @@ class generate_key():
 
             # 进行双门限量化
             data_doubleq, delete_index = deal.doubleq(rank_data, constValue.doubleq_Fac)
-            print("此次发送的删除index长度:", len(delete_index))
-            print(delete_index)
-            # 先等待接受shuju
-            print("准备接受数据")
+            # print("此次发送的删除index长度:", len(delete_index))
+            # print(delete_index)
+            # # 先等待接受shuju
+            # print("准备接受数据")
             delete_index_reve = self.uart_commu.receive()
-            print("接收到数据")
-            print("准备发送数据")
+            # print("接收到数据")
+            # print("准备发送数据")
             # 此处考虑如果delete_inde的长度为0
             if (len(delete_index) == 0):
                 self.uart_commu.send_data([255])
@@ -78,10 +80,12 @@ class generate_key():
 
             if len(delete_index_reve) == 1 and delete_index_reve[0] == 255:
                 delete_index_reve = []
-            print("此次接受的删除index长度:", len(delete_index_reve))
-            print(delete_index_reve)
+            # print("此次接受的删除index长度:", len(delete_index_reve))
+            # print(delete_index_reve)
 
             tmp_key, tmp_delete = deal.codeGen(data_doubleq, delete_index, delete_index_reve)
             self.key.extend(tmp_key)
 
             self.rssi_data = deal.get_new_rssi(self.rssi_data, tmp_delete)
+        print("密钥长度:", len(self.key))
+        return self.key
