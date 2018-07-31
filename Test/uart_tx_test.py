@@ -17,7 +17,7 @@ if __name__ == "__main__":
     uart_test = uart_communicate(used_com)
     loop = 1
     data = []
-    for i in range(199):
+    for i in range(190):
         data.append(i)
     while loop > 0:
         print(loop)
