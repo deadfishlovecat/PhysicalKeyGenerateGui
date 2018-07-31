@@ -15,7 +15,7 @@ class generate_key():
         self.rssi_data = deal.interleave(self.primary_rssi_data, constValue.interleave_order)
         self.key = []
 
-    def get_key_master(self):
+    def get_key_slave(self):
         while len(self.rssi_data) > 10:
             print("当前密钥长度:", len(self.key))
             print("剩余数据长度", len(self.rssi_data))
@@ -48,7 +48,7 @@ class generate_key():
 
             self.rssi_data = deal.get_new_rssi(self.rssi_data, tmp_delete)
 
-    def get_key_slave(self):
+    def get_key_master(self):
         while len(self.rssi_data) > 10:
             print("当前密钥长度:", len(self.key))
             print("剩余数据长度", len(self.rssi_data))
