@@ -9,4 +9,5 @@ if __name__ == "__main__":
     com = get_com_by_input()
     keyGenerate_test = generate_key(com)
     keyGenerate_test.get_key_master()
+    keyGenerate_test.erroe_correction_master()
     print(keyGenerate_test.key)

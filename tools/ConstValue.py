@@ -22,3 +22,7 @@ class constValue():
 
     # zigbee一次传输的数据
     translate_once = 60
+
+
+    # 进行纠错编码的时候一次能传输的数据
+    error_translate_once = 190

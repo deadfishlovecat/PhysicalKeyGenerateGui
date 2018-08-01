@@ -2,6 +2,7 @@ __author__ = 'cao'
 from Uart.uart_new import uart_communicate
 import keyGenerate.dealData as deal
 from Tools.ConstValue import constValue
+from keyGenerate.Error_correction import encode,decode
 
 '''
 实现数据处理类
@@ -50,6 +51,33 @@ class generate_key():
             self.rssi_data = deal.get_new_rssi(self.rssi_data, tmp_delete)
         print("密钥长度:", len(self.key))
         return self.key
+
+    # 利用纠错编码生成最后的密钥
+    def error_correction_slave(self):
+        # 首先生成自己的纠错编码
+        self.error_corr = encode(self.key)
+        # 进行纠错编码的交换
+        # slave首先将自己的发送出去
+        # 密钥的纠错码不会超过190
+        if len(self.key) > 198:
+            print("密钥长度超过198")
+        self.uart_commu.send_data(self.error_corr)
+        self.rece_error_corr = self.uart_commu.receive()
+        self.final_key = decode(self.key, self.rece_error_corr)
+        print(len(self.final_key))
+        print(self.final_key)
+
+
+    def erroe_correction_master(self):
+        self.error_corr = encode(self.key)
+        # 首先接受纠错编码
+        self.rece_error_corr = self.uart_commu.receive()
+        # 发送纠错编码
+        self.uart_commu.send_data(self.error_corr)
+        self.final_key = decode(self.key, self.rece_error_corr)
+        print(len(self.final_key))
+        print(self.final_key)
+
 
     def get_key_master(self):
         while len(self.rssi_data) > 10:
