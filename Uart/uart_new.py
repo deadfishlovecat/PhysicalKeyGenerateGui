@@ -45,7 +45,8 @@ class uart_communicate():
 
 
     def send_end(self):
-        pass
+        data = [1, 1]
+        self.send_data(data)
 
     # 关闭串口
     def close(self):
