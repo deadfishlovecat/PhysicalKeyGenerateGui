@@ -71,8 +71,8 @@ def decode(primary_data, encode_data):
     '''
     current_encode_data = encode(primary_data)
 
-    loop = int(len(primary_data) / 4) + 1
-
+    loop = int(len(primary_data) / 4)
+    print("loop的长度：", loop)
     delete_index = []
     for i in range(0, loop):
         flag = True

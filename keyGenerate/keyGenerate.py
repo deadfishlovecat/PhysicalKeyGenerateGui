@@ -63,6 +63,8 @@ class generate_key():
             print("密钥长度超过198")
         self.uart_commu.send_data(self.error_corr)
         self.rece_error_corr = self.uart_commu.receive()
+        print("纠错编码长度:", len(self.error_corr))
+        print("接受到的纠错编码长度：", len(self.rece_error_corr))
         self.final_key = decode(self.key, self.rece_error_corr)
         print(len(self.final_key))
         print(self.final_key)
@@ -74,8 +76,10 @@ class generate_key():
         self.rece_error_corr = self.uart_commu.receive()
         # 发送纠错编码
         if len(self.error_corr) > 198:
-            print("密钥长度超过198")
+            print("纠错编码长度超过198")
         self.uart_commu.send_data(self.error_corr)
+        print("纠错编码长度:", len(self.error_corr))
+        print("接受到的纠错编码长度：", len(self.rece_error_corr))
         self.final_key = decode(self.key, self.rece_error_corr)
         print(len(self.final_key))
         print(self.final_key)
