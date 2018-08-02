@@ -10,4 +10,4 @@ if __name__ == "__main__":
     keyGenerate_test = generate_key(com)
     keyGenerate_test.get_key_master()
     keyGenerate_test.erroe_correction_master()
-    print(keyGenerate_test.key)
+    print(len(keyGenerate_test.key))

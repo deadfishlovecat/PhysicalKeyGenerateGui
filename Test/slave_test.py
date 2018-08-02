@@ -8,4 +8,4 @@ if __name__ == "__main__":
     keyGenerate_test = generate_key(com)
     keyGenerate_test.get_key_slave()
     keyGenerate_test.error_correction_slave()
-    print(keyGenerate_test.key)
+    print(len(keyGenerate_test.key))
