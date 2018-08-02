@@ -77,6 +77,7 @@ def decode(primary_data, encode_data):
     for i in range(0, loop):
         flag = True
         for j in range(0, 3):
+
             if encode_data[j + i * 3] == current_encode_data[j + i * 3]:
                 continue
             else:

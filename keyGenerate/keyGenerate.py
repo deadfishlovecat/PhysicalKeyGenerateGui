@@ -59,7 +59,7 @@ class generate_key():
         # 进行纠错编码的交换
         # slave首先将自己的发送出去
         # 密钥的纠错码不会超过190
-        if len(self.key) > 198:
+        if len(self.error_corr) > 198:
             print("密钥长度超过198")
         self.uart_commu.send_data(self.error_corr)
         self.rece_error_corr = self.uart_commu.receive()
@@ -73,6 +73,8 @@ class generate_key():
         # 首先接受纠错编码
         self.rece_error_corr = self.uart_commu.receive()
         # 发送纠错编码
+        if len(self.error_corr) > 198:
+            print("密钥长度超过198")
         self.uart_commu.send_data(self.error_corr)
         self.final_key = decode(self.key, self.rece_error_corr)
         print(len(self.final_key))
