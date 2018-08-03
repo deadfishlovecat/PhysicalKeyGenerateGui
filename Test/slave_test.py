@@ -1,6 +1,7 @@
 __author__ = 'caocongcong'
 from keyGenerate.keyGenerate import generate_key
 from Uart.get_com import get_com_by_input
+import time
 
 # 与RX相连
 if __name__ == "__main__":
@@ -9,9 +10,12 @@ if __name__ == "__main__":
     keyGenerate_test.get_key_slave()
     keyGenerate_test.error_correction_slave()
     print(len(keyGenerate_test.key))
+    print("发送完毕")
     data = []
     for i in range(60):
         data.append(i)
 
-    for i in range(5):
+    for i in range(10):
+        print(i)
+        time.sleep(1)
         keyGenerate_test.send_data(data)
