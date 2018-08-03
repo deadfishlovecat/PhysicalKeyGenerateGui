@@ -11,11 +11,11 @@ if __name__ == "__main__":
     keyGenerate_test.error_correction_slave()
     print(len(keyGenerate_test.key))
     print("发送完毕")
+    time.sleep(1)
     data = []
     for i in range(60):
         data.append(i)
 
     for i in range(10):
         print(i)
-        time.sleep(1)
         keyGenerate_test.send_data(data)

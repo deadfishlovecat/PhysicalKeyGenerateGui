@@ -128,6 +128,10 @@ class generate_key():
     # 发送数据
     def send_data(self, data):
         self.uart_commu.send_data(data)
-
+        if self.uart_commu.get_ack():
+            print("发送成功")
+        else:
+            print("发送失败")
+    # 接收数据
     def get_data(self):
         return self.uart_commu.receive()

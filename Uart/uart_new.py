@@ -51,6 +51,13 @@ class uart_communicate():
     # 关闭串口
     def close(self):
         self.close()
+
+    def get_ack(self):
+        ack = int.from_bytes(self.ser.read(), byteorder="big")
+        if (ack == 1):
+            return True
+        else:
+            return False
 if __name__ == "__main__":
     used_com = get_com_by_input()
     uart_test = uart_communicate(used_com)
