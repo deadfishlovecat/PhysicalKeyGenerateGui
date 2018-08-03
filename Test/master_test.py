@@ -10,5 +10,7 @@ if __name__ == "__main__":
     keyGenerate_test = generate_key(com)
     keyGenerate_test.get_key_master()
     keyGenerate_test.erroe_correction_master()
-    keyGenerate_test.uart_commu.send_end()
+    # keyGenerate_test.uart_commu.send_end()
     print(len(keyGenerate_test.key))
+    while True:
+        print(keyGenerate_test.get_data())

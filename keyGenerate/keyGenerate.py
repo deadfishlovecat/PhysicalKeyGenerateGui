@@ -68,6 +68,7 @@ class generate_key():
         self.final_key = decode(self.key, self.rece_error_corr)
         print(len(self.final_key))
         print(self.final_key)
+        self.uart_commu.send_end()
 
 
     def erroe_correction_master(self):
@@ -123,3 +124,10 @@ class generate_key():
             self.rssi_data = deal.get_new_rssi(self.rssi_data, tmp_delete)
         print("密钥长度:", len(self.key))
         return self.key
+
+    # 发送数据
+    def send_data(self, data):
+        self.uart_commu.send_data(data)
+
+    def get_data(self):
+        return self.uart_commu.receive()

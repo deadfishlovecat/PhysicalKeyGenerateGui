@@ -8,5 +8,10 @@ if __name__ == "__main__":
     keyGenerate_test = generate_key(com)
     keyGenerate_test.get_key_slave()
     keyGenerate_test.error_correction_slave()
-    keyGenerate_test.uart_commu.send_end()
     print(len(keyGenerate_test.key))
+    data = []
+    for i in range(60):
+        data.append(i)
+
+    for i in range(5):
+        keyGenerate_test.send_data(data)
