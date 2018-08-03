@@ -66,9 +66,12 @@ class generate_key():
         print("纠错编码长度:", len(self.error_corr))
         print("接受到的纠错编码长度：", len(self.rece_error_corr))
         self.final_key = decode(self.key, self.rece_error_corr)
-        print(len(self.final_key))
-        print(self.final_key)
+        # print(len(self.final_key))
+        # print(self.final_key)
         self.uart_commu.send_end()
+        self.get_byte_key()
+        print(len(self.byte_key))
+        print(self.byte_key)
 
 
     def erroe_correction_master(self):
@@ -82,8 +85,9 @@ class generate_key():
         print("纠错编码长度:", len(self.error_corr))
         print("接受到的纠错编码长度：", len(self.rece_error_corr))
         self.final_key = decode(self.key, self.rece_error_corr)
-        print(len(self.final_key))
-        print(self.final_key)
+        self.get_byte_key()
+        print(len(self.byte_key))
+        print(self.byte_key)
 
 
     def get_key_master(self):
@@ -135,3 +139,17 @@ class generate_key():
     # 接收数据
     def get_data(self):
         return self.uart_commu.receive()
+
+    # 将八个byte转化成一个int
+    def change_to_byte(self,data):
+        result = 0
+        for i in range(len(data)):
+            result += data[i] * pow(2, i)
+        return result
+
+    # 转化成byte的形式
+    def get_byte_key(self):
+        self.byte_key = []
+        for i in range(int(len(self.final_key) / 8)):
+            tmp_int = self.change_to_byte(self.final_key[i * 8:(i + 1) * 8])
+            self.byte_key.append(tmp_int)
