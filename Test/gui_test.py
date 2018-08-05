@@ -15,7 +15,7 @@ class Example(QWidget):
 
     def initUI(self):
         # 设置窗口的位置和大小
-        self.setGeometry(200, 200, 1000, 750)
+        self.setGeometry(200, 200, 900, 600)
         #设置窗口的标题
         self.setWindowTitle("密钥生成演示系统")
         #设置窗口的图标，引用当前目录下的web.png图片
