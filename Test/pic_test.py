@@ -11,9 +11,9 @@ def get_ima_data():
     img = im.convert('L')
     img.thumbnail((120, 120))
     img_data = np.array(img)
-    img = img.resize((240, 240), PIL.Image.ANTIALIAS)
+    # img = img.resize((240, 240), PIL.Image.ANTIALIAS)
     # print(img.size)
-    img.show()
+    # img.show()
     img_data = img_data.reshape(-1, 1)
     # print(img_data.shape)
     list_data = []
@@ -26,14 +26,19 @@ def get_ima_data():
 def compress():
     pass
 
+# 传入一个list，绘制一张图
+def show_pic(data):
+    img_data = np.array(data)
+    img_data = img_data.reshape((120, 120))
+    im = PIL.Image.fromarray(img_data)
+    im = im.resize((240, 240), PIL.Image.ANTIALIAS)
+    im.show()
+
+
 # print(img_data)
 # img = img.resize((200, 200), PIL.Image.ANTIALIAS)
 # print(img.size)
 # img.show()
 if __name__ == "__main__":
     list_data = get_ima_data()
-    # print(list_data[0])
-    byte_data = bytes(list_data)
-    # print(len(byte_data))
-    # compree_data = gzip.compress(byte_data)
-    # print(len(compree_data))
+    show_pic(list_data)
