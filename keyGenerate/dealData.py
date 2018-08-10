@@ -51,7 +51,8 @@ def smooth(data, SPAN):
         data_sum = 0.0
         for j in range(int(i-pn), int(i+pn)+1):
             data_sum += data[j]
-        result.append(int((data_sum/(2*pn+1))*10000)/10000)
+        # print(int((data_sum/(2*pn+1))*10000))
+        result.append(int(int((data_sum/(2*pn+1))*10000)/10000))
     return result
 
 def Rank(data, K):
@@ -63,7 +64,7 @@ def Rank(data, K):
     '''
     tmp_sum = 1.0
     data_length = len(data)
-    result = []
+    result =  [0] * data_length
     for i in range(int(data_length/K)):
         for j in range(K):
             for s in range(K):
@@ -72,7 +73,7 @@ def Rank(data, K):
                         tmp_sum += 1.0
                     if (abs(data[i*K+j] - data[i*K+s]) == 0):
                         tmp_sum += 0.5
-            result.insert(i*K+j, tmp_sum)
+            result[i*K+j] = tmp_sum
             tmp_sum = 1.0
     return result
 

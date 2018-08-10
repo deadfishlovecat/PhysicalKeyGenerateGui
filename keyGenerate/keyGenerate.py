@@ -160,3 +160,5 @@ class generate_key():
         for i in range(int(len(self.final_key) / 8)):
             tmp_int = self.change_to_byte(self.final_key[i * 8:(i + 1) * 8])
             self.byte_key.append(tmp_int)
+
+    # 加密
