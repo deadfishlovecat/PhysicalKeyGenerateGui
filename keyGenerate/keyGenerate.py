@@ -17,10 +17,11 @@ class generate_key():
         self.key = []
 
     def get_key_slave(self):
+        #loop_num = 0
         while len(self.rssi_data) > 10:
-            # print("当前密钥长度:", len(self.key))
-            # print("剩余数据长度", len(self.rssi_data))
-            # print("总和长度：", len(self.key ) + len(self.rssi_data))
+            print("当前密钥长度:", len(self.key))
+            print("剩余数据长度", len(self.rssi_data))
+            print("总和长度：", len(self.key ) + len(self.rssi_data))
             # 首先进行平滑
             smooth_data = deal.smooth(self.rssi_data, constValue.smooth_order)
 
@@ -94,9 +95,9 @@ class generate_key():
 
     def get_key_master(self):
         while len(self.rssi_data) > 10:
-            # print("当前密钥长度:", len(self.key))
-            # print("剩余数据长度", len(self.rssi_data))
-            # print("总和长度：", len(self.key) + len(self.rssi_data))
+            print("当前密钥长度:", len(self.key))
+            print("剩余数据长度", len(self.rssi_data))
+            print("总和长度：", len(self.key) + len(self.rssi_data))
             # 首先进行平滑
             smooth_data = deal.smooth(self.rssi_data, constValue.smooth_order)
 
