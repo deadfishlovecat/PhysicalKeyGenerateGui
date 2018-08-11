@@ -88,8 +88,8 @@ def decode(primary_data, encode_data):
             delete_index.append(i)
             delete_index.append(i+loop)
             delete_index.append(i+loop*2)
-            if (i + loop * 3) < len(primary_data):
-                delete_index.append(i+loop*3)
+            # if (i + loop * 3) < len(primary_data):
+            #     delete_index.append(i+loop*3)
     return delete_value(primary_data, delete_index)
 
 def encode(primary_code):

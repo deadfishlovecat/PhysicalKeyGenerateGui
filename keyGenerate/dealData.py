@@ -141,6 +141,7 @@ def codeGen(q_data, delete_index_master, delete_index_slave):
 def get_new_rssi(primary_data, index):
     result = []
     for i in range(len(index)):
+
         result.append(primary_data[index[i]])
     return result
 
