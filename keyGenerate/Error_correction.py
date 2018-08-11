@@ -72,12 +72,15 @@ def decode(primary_data, encode_data):
     current_encode_data = encode(primary_data)
 
     loop = int(len(primary_data) / 4)
-    print("loop的长度：", loop)
     delete_index = []
+    for i in range(len(primary_data)):
+        delete_index.append(0)
+    print(len(delete_index))
+    print(delete_index)
+    print("loop的长度：", loop)
     for i in range(0, loop):
         flag = True
         for j in range(0, 3):
-
             if encode_data[j + i * 3] == current_encode_data[j + i * 3]:
                 continue
             else:
@@ -85,12 +88,17 @@ def decode(primary_data, encode_data):
                 break
         # 说明这个四个需要被删除
         if not flag:
-            delete_index.append(i)
-            delete_index.append(i+loop)
-            delete_index.append(i+loop*2)
-            if (i + loop * 3) < len(primary_data):
-                delete_index.append(i+loop*3)
-    return delete_value(primary_data, delete_index)
+            print(i, " ", i+loop, " ", i+loop*2, " ", i+loop*3)
+            delete_index[i] = -1
+            delete_index[i+loop] = -1
+            delete_index[i+loop*2] = -1
+            # if (i + loop * 3) < len(primary_data):
+            delete_index[i+loop*3] = -1
+    result = []
+    for i in range(len(primary_data)):
+        if delete_index[i] != -1:
+            result.append(primary_data[i])
+    return result
 
 def encode(primary_code):
     '''
@@ -98,16 +106,32 @@ def encode(primary_code):
     :param primary_code: 原始的hanming编码
     :return:
     '''
-    numpy_data = inter(primary_code)
+    # numpy_data = inter(primary_code)
     result = []
-    for i in range(len(numpy_data[0])):
+    add_len = 0
+    if len(primary_code)%4 != 0:
+        add_len = 4 - len(primary_code)%4
+    for i in range(add_len):
+        primary_code.append(0)
+    loop_num = int(len(primary_code)/4)
+    for i in range(loop_num):
         tmp_list = []
-        for j in range(4):
-            tmp_list.append(numpy_data[j][i])
-
-        # 调用hanming编码
-        tmp_hanming = haming_encode(tmp_list)
-        result.extend(tmp_hanming)
+        # for j in range(4):
+        #     tmp_list.append(primary_code[i+ j *loop_num])
+        #
+        # # 调用hanming编码
+        # tmp_hanming = haming_encode(tmp_list)
+        # result.extend(tmp_hanming)
+        a6 = primary_code[i]
+        a5 = primary_code[i+loop_num]
+        a4 = primary_code[i+loop_num*2]
+        a3 = primary_code[i+loop_num*3]
+        a2 = a6^a4^a3;
+        result.append(a2);
+        a1= a6^a5^a4;
+        result.append(a1);
+        a0 = a5^a4^a3;
+        result.append(a0);
 
     return result
 
@@ -147,7 +171,5 @@ if __name__ == "__main__":
     data2[101] =1
     data2[102]= 1
     encode_result = encode(data)
-    delete_index = decode(data2, encode_result)
-    print(delete_index)
-    print(delete_value(data, delete_index))
-    print(delete_value(data2, delete_index))
+    result = decode(data2, encode_result)
+    print(result)

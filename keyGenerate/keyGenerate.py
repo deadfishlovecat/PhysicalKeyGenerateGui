@@ -77,20 +77,20 @@ class generate_key():
 
     def erroe_correction_master(self):
         self.error_corr = encode(self.key)
+        print("纠错编码后的秘钥长度：", str(len(self.key)))
         # 首先接受纠错编码
         self.rece_error_corr = self.uart_commu.receive()
         # 发送纠错编码
-        if len(self.error_corr) > 198:
-            print("纠错编码长度超过198")
         self.uart_commu.send_data(self.error_corr)
         print("纠错编码长度:", len(self.error_corr))
         print("接受到的纠错编码长度：", len(self.rece_error_corr))
+        print(self.rece_error_corr)
         self.final_key = decode(self.key, self.rece_error_corr)
         print(len(self.final_key))
         print(self.final_key)
-        self.get_byte_key()
-        print(len(self.byte_key))
-        print(self.byte_key)
+        # self.get_byte_key()
+        # print(len(self.byte_key))
+        # print(self.byte_key)
 
 
     def get_key_master(self):
@@ -111,7 +111,8 @@ class generate_key():
             # # 先等待接受shuju
             # print("准备接受数据")
             delete_index_reve = self.uart_commu.receive()
-            # print("接收到数据")
+            print("接收到数据")
+            print(delete_index_reve)
             # print("准备发送数据")
             # 此处考虑如果delete_inde的长度为0
             if (len(delete_index) == 0):
@@ -145,12 +146,12 @@ class generate_key():
 
     # 将八个byte转化成一个int
     def change_to_byte(self,data):
-        print("此次进行转换的数据:")
-        print(data)
+        # print("此次进行转换的数据:")
+        # print(data)
         result = 0
         for i in range(len(data)):
             result += data[i] * pow(2, i)
-        print(result)
+        # print(result)
         return result
 
     # 转化成byte的形式
