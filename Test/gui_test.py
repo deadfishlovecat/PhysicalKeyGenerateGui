@@ -1,11 +1,11 @@
 __author__ = 'caocongcong'
 
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QWidget, QToolTip, QPushButton, QMainWindow
+from PyQt5.QtGui import QIcon, QFont
 
 
-class Example(QWidget):
+class Example(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -20,6 +20,7 @@ class Example(QWidget):
         self.setWindowTitle("密钥生成演示系统")
         #设置窗口的图标，引用当前目录下的web.png图片
         self.setWindowIcon(QIcon('../data/seu.png'))
+        self.statusBar().showMessage('Ready')
         # 初始化
         #显示窗口
         self.show()

@@ -23,7 +23,7 @@ class uart_communicate():
         for i in range(constValue.frame_length):
             data = primary_rssi_data[i*3+2] - ord('0')
             data += (primary_rssi_data[i*3+1] - ord('0'))*10
-            self.rssi_data.append(data)
+            self.rssi_data.append(-data)
 
     # 发送数据
     def send_data(self, data):

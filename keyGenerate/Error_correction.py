@@ -75,8 +75,6 @@ def decode(primary_data, encode_data):
     delete_index = []
     for i in range(len(primary_data)):
         delete_index.append(0)
-    print(len(delete_index))
-    print(delete_index)
     print("loop的长度：", loop)
     for i in range(0, loop):
         flag = True
@@ -95,6 +93,9 @@ def decode(primary_data, encode_data):
             # if (i + loop * 3) < len(primary_data):
             delete_index[i+loop*3] = -1
     result = []
+    print("删除的index")
+    print(len(delete_index))
+    print(delete_index)
     for i in range(len(primary_data)):
         if delete_index[i] != -1:
             result.append(primary_data[i])

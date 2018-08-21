@@ -13,12 +13,11 @@ if __name__ == "__main__":
     print(len(keyGenerate_test.key))
     print(keyGenerate_test.key)
 
-    # keyGenerate_test.erroe_correction_master()
-    # # keyGenerate_test.uart_commu.send_end()
-    # print(len(keyGenerate_test.key))
-    #
-    # i = 0
-    # while True:
-    #     print(keyGenerate_test.get_data())
-    #     print(i)
-    #     i += 1
+    keyGenerate_test.erroe_correction_master()
+    keyGenerate_test.uart_commu.send_end()
+
+    i = 0
+    while True:
+        print(keyGenerate_test.get_data())
+        print(i)
+        i += 1
