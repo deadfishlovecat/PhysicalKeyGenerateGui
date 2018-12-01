@@ -14,7 +14,7 @@ if __name__ == "__main__":
     print(keyGenerate_test.key)
 
     keyGenerate_test.erroe_correction_master()
-    keyGenerate_test.uart_commu.send_end()
+    #keyGenerate_test.uart_commu.send_end()
 
     i = 0
     while True:

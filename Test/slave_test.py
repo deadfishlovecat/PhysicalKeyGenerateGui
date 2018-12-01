@@ -11,6 +11,7 @@ if __name__ == "__main__":
     keyGenerate_test.error_correction_slave()
     print(len(keyGenerate_test.key))
     print("发送完毕")
+    #keyGenerate_test.uart_commu.send_end()
     time.sleep(1)
     data = []
     for i in range(60):
@@ -19,3 +20,4 @@ if __name__ == "__main__":
     for i in range(10):
         print(i)
         keyGenerate_test.send_data(data)
+
